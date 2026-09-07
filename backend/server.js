@@ -103,7 +103,9 @@ app.get("/auth/login", (req, res) => {
 app.get("/auth/debug-redirect-uri", (req, res) => {
   res.json({
     SF_REDIRECT_URI_from_env: SF_REDIRECT_URI,
-    SF_CLIENT_ID_first_10_chars: SF_CLIENT_ID ? SF_CLIENT_ID.slice(0, 10) : "MISSING",
+    SF_CLIENT_ID_first_25_chars: SF_CLIENT_ID ? SF_CLIENT_ID.slice(0, 25) : "MISSING",
+    SF_CLIENT_ID_length: SF_CLIENT_ID ? SF_CLIENT_ID.length : 0,
+    SF_CLIENT_SECRET_length: SF_CLIENT_SECRET ? SF_CLIENT_SECRET.length : 0,
     SF_LOGIN_URL,
   });
 });
