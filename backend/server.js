@@ -34,6 +34,7 @@ const {
 } = process.env;
 
 const app = express();
+app.set("trust proxy", 1); // required on Render for secure cookies to work
 app.use(express.json());
 app.use(
   cors({
@@ -48,8 +49,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      sameSite: "lax",
-      secure: false, // set true when serving over https in production
+      sameSite: "none",
+      secure: true, // required for sameSite: "none" — Render serves over https
       maxAge: 1000 * 60 * 60 * 4,
     },
   })
